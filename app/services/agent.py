@@ -8,6 +8,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.agent_toolkits import create_sql_agent
 from langchain_chroma import Chroma
 from app.core.database import db
+from app.core.config import settings
 from app.tools.export_tools import export_to_excel_tool
 from app.tools.chart_tools import generate_chart_tool
 from app.services.few_shot import get_few_shot_examples
@@ -15,7 +16,7 @@ from app.services.few_shot import get_few_shot_examples
 from langchain_core.tools import tool
 
 # Inicializar ChromaDB y Recuperador (RAG)
-embeddings = OpenAIEmbeddings()
+embeddings = OpenAIEmbeddings(api_key=settings.OPENAI_API_KEY)
 vectorstore = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
 # Aumentamos k a 15 y usamos MMR para asegurar que traiga tanto el esquema de BD como las reglas de negocio en la misma consulta
 retriever = vectorstore.as_retriever(search_type="mmr", search_kwargs={"k": 15, "fetch_k": 40})
