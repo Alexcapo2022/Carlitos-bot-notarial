@@ -14,5 +14,8 @@ class Settings(BaseSettings):
 
 settings = Settings()
 
-# Construir URL de base de datos
-DATABASE_URL = f"mysql+pymysql://{settings.DB_USER}:{settings.DB_PASS}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
+from urllib.parse import quote_plus
+
+# Construir URL de base de datos de forma segura
+encoded_pass = quote_plus(settings.DB_PASS) if settings.DB_PASS else ""
+DATABASE_URL = f"mysql+pymysql://{settings.DB_USER}:{encoded_pass}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
