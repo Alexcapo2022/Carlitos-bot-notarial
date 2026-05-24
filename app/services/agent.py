@@ -1,3 +1,7 @@
+import sys
+__import__('pysqlite3')
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import json
 from typing import List, Dict, Optional
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
