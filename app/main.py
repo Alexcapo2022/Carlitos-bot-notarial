@@ -1,3 +1,9 @@
+import os
+from dotenv import load_dotenv
+
+# Forzar la carga del .env buscando en el directorio padre de 'app'
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
+
 from app.api.routes import router as api_router
 from app.core.database import engine
 from sqlalchemy import text
