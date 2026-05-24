@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  carlitos-api:
+    build: .
+    container_name: carlitos-bot
+    ports:
+      - "8001:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    restart: unless-stopped
+    # Opcional: Si tu base de datos de Laravel también está en un contenedor, 
+    # podrías conectarla a su red aquí (ej. networks: - laravel_network)

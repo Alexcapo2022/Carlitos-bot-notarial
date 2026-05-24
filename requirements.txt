@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+langchain
+langchain-openai
+langchain-community
+langchain-chroma
+sqlalchemy
+pymysql
+chromadb
+python-dotenv
+pandas
+matplotlib
+openpyxl
+plotly
+pydantic
